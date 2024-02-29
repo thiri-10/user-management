@@ -15,10 +15,14 @@ class isAuthenticated
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!$request->session()->get('auth'))
-        {
+        // if(!$request->session()->get('auth'))
+        // {
+        //     return redirect()->route('login');
+        // }
+        if (!auth()->check()) {
             return redirect()->route('login');
         }
         return $next($request);
+        
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,7 @@ class RolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $adminRole = Role::where('name', 'Admin')->first();
+        $adminRole->permissions()->attach([2,3,4,5,7,8,9,10]);
     }
 }
