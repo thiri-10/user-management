@@ -33,7 +33,7 @@
                                         <th></th>
                                     </thead>
                                     <tbody>
-                                        @foreach (App\Models\Feature::all() as $feature)
+                                        @foreach ($features as $feature)
                                             <tr>
                                                 <td>{{$feature->name}}</td>
                                                 @foreach ($feature->permissions as $permission)

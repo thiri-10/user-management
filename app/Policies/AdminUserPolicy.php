@@ -13,7 +13,7 @@ class AdminUserPolicy
      */
     public function viewAny(User $user,Admin_user $adminUser): bool
     {
-        return $adminUser->hasPermission('View');
+        return $adminUser->hasPermission('view','user');
     }
 
     /**
@@ -21,7 +21,7 @@ class AdminUserPolicy
      */
     public function view(User $user, Admin_user $adminUser): bool
     {
-        return $adminUser->hasPermission('View');
+        return $adminUser->hasPermission('view','user');
     }
 
     /**
@@ -29,7 +29,7 @@ class AdminUserPolicy
      */
     public function create(User $user,Admin_user $adminUser): bool
     {
-        return $adminUser->hasPermission('Create');
+        return $adminUser->hasPermission('create','user');
     }
 
     /**
@@ -37,7 +37,7 @@ class AdminUserPolicy
      */
     public function update(User $user, Admin_user $adminUser): bool
     {
-        return $adminUser->hasPermission('Update');
+        return $adminUser->hasPermission('update','user');
     }
 
     /**
@@ -45,7 +45,7 @@ class AdminUserPolicy
      */
     public function delete(User $user, Admin_user $adminUser): bool
     {
-        return $adminUser->hasPermission('Delete');
+        return $adminUser->hasPermission('delete','user');
     }
 
     /**

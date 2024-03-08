@@ -17,16 +17,7 @@
             <nav class="col-1 bg-light">
                @include('layouts.nav')
             </nav>
-            {{-- <div class="row">
-                <div class="col">
-                    <div class="collapse" id="user">
-                        <div class="card card-body">
-                        <h5 class="card-title"></h5>
-                        <p>Some sample content</p>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
+           
             <main class="col-11 bg-light">
                 @yield('content')
             </main>

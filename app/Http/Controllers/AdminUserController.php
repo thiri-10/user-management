@@ -24,7 +24,7 @@ class AdminUserController extends Controller
 
         $users = Admin_user::when(request()->has('keyword'), function ($query) {
             $keyword = request()->keyword;
-            $query->where('name', 'Like', '%'.$keyword.'%');
+            $query->where('username', 'like', '%'.$keyword.'%');
         })
             ->when(request()->has('sort'), function ($query) {
                 $sortType = request()->sort ?? 'asc';
@@ -58,11 +58,7 @@ class AdminUserController extends Controller
         $this->authorizeResource('create', Admin_user::class);
          
          $user = new Admin_user();
-        //  $prefix = $request->prefix ;
-        //  $fName = $request->name;
-        //  $lName = $request->lname;
-        //  $user->name = $prefix+'.'+ $fName+$lName;
-        $user->name = $request->name;
+         $user->name = $request->name;
          $user->username = $request->username;
          $user->role_id = $request->role_id;
 

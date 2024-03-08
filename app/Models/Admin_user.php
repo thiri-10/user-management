@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+// use Illuminate\Foundation\Auth\User as Authenticatable;
+
 use Illuminate\Contracts\Auth\Authenticatable;
 
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Admin_user extends Model implements Authenticatable
 {
@@ -32,21 +35,14 @@ class Admin_user extends Model implements Authenticatable
     }
 
 
-    public function hasPermission($permissionName)
-    {
-        $role = $this->role;
-        if ($role) {
-            // Check if the user's role has the specified permission
-            return $role->permissions()->where('name', $permissionName)->exists();
-        }
-        // Loop through the user's roles
-        // foreach ($this->role as $role) {
-        //     // Check if any of the user's roles have the specified permission
-        //     if ($role->permissions()->where('name', $permissionName)->exists()) {
-        //         return true;
-        //     }
-        // }
+    public function hasPermission($permissionName, $featureName)
+{
+    return $this->role->permissions()
+        ->whereHas('feature', function($query) use ($featureName) {
+            $query->where('name', $featureName);
+        })
+        ->where('name', $permissionName)
+        ->exists();
+}
 
-        return false;
-    }
 }

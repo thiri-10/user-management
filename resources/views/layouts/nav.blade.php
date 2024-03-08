@@ -32,28 +32,47 @@
    
 </ul> --}}
 
-<div class="list-group">
-    <div class="list-group-item">
-        <a href="{{ route('user.index') }}" class="btn btn-primary">User List</a>
-    </div>
-    <div class="list-group-item">
-        <a href="{{ route('user.create') }}" class="btn btn-primary">Create User</a>
-
-    </div>
-
-    <div class="list-group-item">
-        <a href="{{ route('role.index') }}" class="btn btn-primary">Roles</a>
-    </div>
-
-    <div class="list-group-item">
-        <a href="{{ route('role.create') }}" class="btn btn-primary">Create Role</a>
-    </div>
-
-    <div class="list-group-item">
-        <form action="{{route('logout')}}" method="POST">
-            @csrf
-           <button class="btn btn-secondary">Logout</button>
-    </div>
 
 
+
+
+<div class="list-group ">
+    @if (auth()->user()->hasPermission('view', 'user'))
+        <a href="{{ route('user.index') }}" class="list-group-item list-group-item-action">
+            <button class="btn btn-primary">
+                <i class="bi bi-people me-2"></i>User List
+            </button>
+        </a>
+    @endif
+
+    @if (auth()->user()->hasPermission('create', 'user'))
+        <a href="{{ route('user.create') }}" class="list-group-item list-group-item-action">
+            <button class="btn btn-primary">
+                <i class="bi bi-person-plus me-2"></i>Create User
+            </button>
+        </a>
+    @endif
+
+    @if (auth()->user()->hasPermission('view', 'role'))
+        <a href="{{ route('role.index') }}" class="list-group-item list-group-item-action">
+            <button class="btn btn-primary">
+                <i class="bi bi-shield me-2"></i>Roles
+            </button>
+        </a>
+    @endif
+
+    @if (auth()->user()->hasPermission('create', 'role'))
+        <a href="{{ route('role.create') }}" class="list-group-item list-group-item-action">
+            <button class="btn btn-primary">
+                <i class="bi bi-shield-plus me-2"></i>Create Role
+            </button>
+        </a>
+    @endif
+
+    <form action="{{ route('logout') }}" method="POST" class="list-group-item">
+        @csrf
+        <button type="submit" class="btn btn-secondary">
+            <i class="bi bi-box-arrow-right me-2"></i>Logout
+        </button>
+    </form>
 </div>

@@ -13,7 +13,7 @@ class FeatureSeeder extends Seeder
      */
     public function run(): void
     {
-        $features = ['user','role','sales','checkin','checkout','kitchen','factory','warehouse','product'];
+        $features = ['user','role','product'];
         foreach($features as $feature)
         {
             Feature::factory()->create([

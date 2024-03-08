@@ -19,7 +19,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Role::class);
+        $this->authorize('viewAny',Role::class);
 
         $roles = Role::when(request()->has('keyword'), function ($query) {
             $keyword = request()->keyword;
@@ -36,7 +36,8 @@ class RoleController extends Controller
     {
         $this->authorize('create', Role::class);
 
-        return view('Roles.create');
+        $features = Feature::all();
+        return view('Roles.create',compact('features'));
     }
 
     /**
@@ -81,7 +82,7 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
         $permissions = Permission::all();
 
-        // Pass the role and permissions data to the view
+        
         return view('roles.edit', compact('role', 'permissions'));
     }
 
@@ -95,16 +96,13 @@ class RoleController extends Controller
 
         $validatedData = $request->validate([
             'role' => 'required|string|max:255',
-            'permissions' => 'array', // Ensure permissions is an array
+            'permissions' => 'array', 
         ]);
 
-        // Find the role by ID
         $role = Role::findOrFail($id);
 
-        // Update role name
         $role->name = $validatedData['role'];
 
-        // Sync permissions for the role
         if ($request->has('permissions')) {
             $role->permissions()->sync($request->permissions);
         } else {

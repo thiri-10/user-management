@@ -14,15 +14,16 @@ class RolePolicy
      */
     public function viewAny(Admin_user $user): bool
     {
-        return $user->hasPermission('View');
+        
+        return $user->hasPermission('view','role');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(Admin_user $user, Role $role): bool
+    public function view(Admin_user $user): bool
     {
-        return $user->hasPermission('View');
+        return $user->hasPermission('view','role');
     }
 
     /**
@@ -30,7 +31,7 @@ class RolePolicy
      */
     public function create(Admin_user $user): bool
     {
-        return $user->hasPermission('Create');
+        return $user->hasPermission('create','role');
     }
 
     /**
@@ -38,7 +39,7 @@ class RolePolicy
      */
     public function update(Admin_user $user, Role $role): bool
     {
-        return $user->hasPermission('Update');
+        return $user->hasPermission('update','role');
     }
 
     /**
@@ -46,7 +47,7 @@ class RolePolicy
      */
     public function delete(Admin_user $user, Role $role): bool
     {
-        return $user->hasPermission('Delete');
+        return $user->hasPermission('delete','role');
     }
 
     /**

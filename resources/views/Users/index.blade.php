@@ -11,8 +11,9 @@
                     <form action="{{ route('user.index') }}" method="POST">
                         @csrf
                         <div class="input-group">
-                            <i class="bi bi-search input-group-text"></i>
                             <input type="text" class="form-control" name="keyword">
+                            <button class="btn btn-primary input-group-text" ><i class="bi bi-search "></i></button>
+
                         </div>
                     </form>
 
@@ -54,7 +55,7 @@
                                         active
                                     @endif</td>
                                     <td>
-                                        {{-- <div class="dropdown" data-bs-toggle="dropdown"></div> --}}
+                                    
                                         <div class="btn-group" role="group" aria-label="Actions">
                                             <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary">View</a>
                                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Edit</a>

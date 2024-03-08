@@ -14,19 +14,9 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        // $permissions = ['selectAll','canView','canPost','canEdit','canDelete'];
-
-
-        // foreach($permissions as $permission)
-        // {
-        //     Permission::factory()->create([
-        //         'name' => $permission,
-        //         'feature_id' => rand(1,9)
-        //     ]);
-        // }
 
         $features = Feature::all();
-        $permissions = ['selectAll','View','Create','Update','Delete'];
+        $permissions = ['view','create','update','delete'];
 
         foreach($features as $feature)
         {
